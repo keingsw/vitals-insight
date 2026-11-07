@@ -1,6 +1,6 @@
 # ADR-001: リポジトリの構成とパッケージマネージャー
 
-- ステータス: 提案中 <!-- 提案中 | 承認 | 置き換え(ADR-NNN) -->
+- ステータス: 承認 <!-- 提案中 | 承認 | 置き換え(ADR-NNN) -->
 - 日付: 2026-11-07
 
 ## 背景
@@ -52,9 +52,21 @@
   - パッケージごとのバージョンとタグの管理が必要になる
   - CI で対象ファイルを絞り込む必要がある
   - 14日待つので、脆弱性の修正もすぐには入らない
+  - eng-lab は Bun を使っているため、2つのパッケージマネージャーの設定とバージョンを管理する必要がある
 
 ## 見直す条件
 
 - `minimumReleaseAgeExclude` に入れた緊急の例外が四半期に5件を超えたら、14日という値を見直す
 - CI の絞り込みの抜けで、壊れた変更が main に入ることが2回起きたら、CI の対象を依存関係から計算する方式に変える
 - 外部のコントリビューターが入り、Environments では不十分になったら、リポジトリの分割を再検討する
+
+## 参考
+
+確認日: 2026-11-07
+
+- [pnpm: minimumReleaseAge](https://pnpm.io/settings#minimumreleaseage)(v12 のドキュメント)
+- [Bun: Minimum release age](https://bun.com/docs/pm/cli/install)(v1.4.2 のドキュメント)
+- [npm: config](https://docs.npmjs.com/cli/v12/using-npm/config/)(v12 のドキュメント)
+- [pnpm: build settings](https://pnpm.io/settings/build)(v12 のドキュメント)
+- [Bun: lifecycle scripts](https://bun.com/docs/pm/lifecycle)(v1.4.2 のドキュメント)
+- [Bun: isolated installs](https://bun.com/docs/pm/isolated-installs)(v1.4.2 のドキュメント)
